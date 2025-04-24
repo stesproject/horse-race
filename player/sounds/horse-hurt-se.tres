@@ -1,0 +1,8 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://btx25f4113wuh"]
+
+[ext_resource type="AudioStream" uid="uid://cfraad0ekjvnq" path="res://player/sounds/horse-hurt.ogg" id="1_nxhxd"]
+
+[resource]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("1_nxhxd")
