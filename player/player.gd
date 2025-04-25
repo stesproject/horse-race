@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var recovery_time := 0.75
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var sprite_details: Sprite2D = $Sprite2D/SpriteDetails
 @onready var animation_timer: Timer = $AnimationTimer
 @onready var cooldown_timer: Timer = $CooldownTimer
 @onready var recovery_timer: Timer = $RecoveryTimer
@@ -67,6 +68,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	sprite_2d.flip_h = direction.x < 0
+	sprite_details.flip_h = sprite_2d.flip_h
 
 
 func _physics_process(delta: float) -> void:
@@ -76,7 +78,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.pressed:
+	var valid = event is InputEventJoypadButton or event is InputEventKey
+	if valid and event.pressed:
 		var key = event.button_index if event is InputEventJoypadButton else event.keycode
 		if key == key_input and cooldown_timer.time_left == 0:
 			if in_hitbox_area:
@@ -111,7 +114,7 @@ func attack():
 func animate():
 	animation_timer.start()
 	await animation_timer.timeout
-	TweenAnimator.warp(sprite_2d, Vector2(1.25, 0.75), anim_speed)
+	TweenAnim.warp(sprite_2d, Vector2(1.25, 0.75), anim_speed)
 	animate()
 
 
@@ -119,7 +122,7 @@ func hurt():
 	stop()
 	play_sound(HORSE_HURT_SE)
 	hits += 1
-	TweenAnimator.spin(sprite_2d, 2, 0.5)
+	TweenAnim.spin(sprite_2d, 2, 0.5)
 	recovery_timer.start()
 	await recovery_timer.timeout
 	start()

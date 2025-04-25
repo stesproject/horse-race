@@ -13,7 +13,7 @@ var ready_to_start := false
 
 
 func _ready() -> void:
-	TweenAnimator.glow_pulse(message, 0.05, 0.3, 1)
+	TweenAnim.pulse(message, 0.05, 0.3, 1)
 	SignalBus.win_race.connect(stop_race)
 
 
@@ -31,7 +31,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			return
 		if !ready_to_start:
 			message.text = "Press ENTER to start"
-			TweenAnimator.glow_pulse(message)
+			TweenAnim.stop(message)
 			ready_to_start = true
 		if !keys.has(key):
 			add_player(key, event is InputEventJoypadButton)

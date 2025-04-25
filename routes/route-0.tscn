@@ -27,6 +27,7 @@ script = ExtResource("2_je6kt")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-22, 37.5)
+editor_draw_limits = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
 process_priority = 300
@@ -50,6 +51,7 @@ auto_zoom = true
 auto_zoom_min = 0.25
 auto_zoom_max = 1.0
 auto_zoom_margin = Vector4(50, 50, 50, 50)
+draw_limits = true
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
 [node name="StartingPositions" type="Node2D" parent="."]

@@ -17,7 +17,7 @@ func _ready() -> void:
 func show_count():
 	play_sound(COUNTDOWN_SE)
 	rich_text_label.text = str(count)
-	TweenAnimator.punch_in(rich_text_label, 1)
+	TweenAnim.punch_in(rich_text_label, 1)
 	timer.start()
 	await timer.timeout
 	count -= 1
@@ -26,7 +26,7 @@ func show_count():
 	else:
 		play_sound(GO_SE)
 		rich_text_label.text = "GO!"
-		TweenAnimator.punch_in(rich_text_label, 1)
+		TweenAnim.punch_in(rich_text_label, 1)
 		SignalBus.start_race.emit()
 		timer.start()
 		await timer.timeout

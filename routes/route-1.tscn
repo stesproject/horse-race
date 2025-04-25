@@ -7,6 +7,9 @@
 
 [node name="Route" instance=ExtResource("1_0dykw")]
 
+[node name="Camera2D" parent="." index="1"]
+editor_draw_limits = true
+
 [node name="P1" parent="StartingPositions" index="0"]
 position = Vector2(28, -45)
 
