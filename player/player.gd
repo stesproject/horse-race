@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-@export var speed := 250
+@export var speed := 250.0
 @export var cooldown := 2.0
 @export var recovery_time := 0.75
 
@@ -35,6 +35,7 @@ var hits := 0:
 		hits = value
 		hits_label.text = str(hits)
 var in_hitbox_area: Player
+var invincible := false
 
 
 func setup(_player_id: int, key, is_joypad := false):
@@ -63,6 +64,9 @@ func _ready() -> void:
 	await SignalBus.start_race
 	set_process_unhandled_input(true)
 	SignalBus.win_race.connect(func(_winner): stop())
+	SignalBus.slow_down.connect(func(player, duration):
+		if player != self:
+			increment_speed(0.5, duration))
 	start()
 
 
@@ -119,6 +123,8 @@ func animate():
 
 
 func hurt():
+	if invincible:
+		return
 	stop()
 	play_sound(HORSE_HURT_SE)
 	hits += 1
@@ -144,6 +150,27 @@ func play_sound(stream: AudioStream):
 	audio_stream_player.stop()
 	audio_stream_player.stream = stream
 	audio_stream_player.play()
+
+
+func increment_speed(increment: float, duration: float):
+	if increment > 1.0:
+		sprite_2d.modulate = Color.ORANGE_RED
+		play_sound(HORSE_JOIN_SE)
+	else:
+		sprite_2d.modulate = Color.SKY_BLUE
+	speed *= increment
+	await get_tree().create_timer(duration).timeout
+	speed /= increment
+	sprite_2d.modulate = Color.WHITE
+
+
+func invincibility(duration: float):
+	play_sound(HORSE_JOIN_SE)
+	invincible = true
+	sprite_2d.modulate = Color(1, 1, 1, 0.5)
+	await get_tree().create_timer(duration).timeout
+	invincible = false
+	sprite_2d.modulate = Color.WHITE
 
 
 func _get_random_direction():

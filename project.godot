@@ -45,6 +45,7 @@ start={
 2d_physics/layer_1="default"
 2d_physics/layer_2="hurtbox"
 2d_physics/layer_3="character"
+2d_physics/layer_4="powerup"
 
 [physics]
 
@@ -55,4 +56,4 @@ common/physics_interpolation=true
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0.415686, 0.596078, 0.0980392, 1)
+environment/defaults/default_clear_color=Color(0.341176, 0.670588, 0, 1)

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfohxk5u8b2wq"]
+
+[ext_resource type="PackedScene" uid="uid://c80cdxklbeae1" path="res://powerups/power_up.tscn" id="1_ecorr"]
+[ext_resource type="Script" uid="uid://bnhmv5p514j2o" path="res://powerups/speed_up.gd" id="2_q26rg"]
+
+[node name="SpeedUp" instance=ExtResource("1_ecorr")]
+script = ExtResource("2_q26rg")
+speed_increment = 2.0

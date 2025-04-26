@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bwl5yl3fh7uta"]
+[gd_scene load_steps=10 format=3 uid="uid://bwl5yl3fh7uta"]
 
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_08vwb"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_7hj3e"]
@@ -15,8 +15,6 @@ script = ExtResource("3_jgchk")
 duration = 1.0
 transition = 0
 ease = 2
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_j0q2m"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7hj3e"]
 
@@ -63,7 +61,6 @@ position = Vector2(-12, 53)
 y_sort_enabled = true
 
 [node name="Course" type="StaticBody2D" parent="."]
-material = SubResource("CanvasItemMaterial_j0q2m")
 physics_material_override = SubResource("PhysicsMaterial_7hj3e")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -123,8 +120,10 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(554, 76)
 theme_override_font_sizes/normal_font_size = 32
-text = "Waiting for players..."
+text = "Press any key to join..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GameStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Props" type="Node2D" parent="."]

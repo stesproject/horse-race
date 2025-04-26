@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1njyjv7q83mp"]
+
+[ext_resource type="PackedScene" uid="uid://c80cdxklbeae1" path="res://powerups/power_up.tscn" id="1_k4msv"]
+[ext_resource type="Script" uid="uid://2il134n23ucu" path="res://powerups/shield.gd" id="2_htoai"]
+
+[node name="Shield" instance=ExtResource("1_k4msv")]
+script = ExtResource("2_htoai")
+duration = 5.0
+
+[node name="Sprite2D" parent="." index="0"]
+frame = 2

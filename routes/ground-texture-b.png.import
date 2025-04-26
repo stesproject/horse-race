@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwe80ksljnn0s"
-path="res://.godot/imported/route-2.png-1a76a7565dc6f49f8259a93105ad64eb.ctex"
+uid="uid://rfmlmg1hurwx"
+path="res://.godot/imported/ground-texture-b.png-8812da5725f6c48f33c4cac49288580f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://routes/route-2.png"
-dest_files=["res://.godot/imported/route-2.png-1a76a7565dc6f49f8259a93105ad64eb.ctex"]
+source_file="res://routes/ground-texture-b.png"
+dest_files=["res://.godot/imported/ground-texture-b.png-8812da5725f6c48f33c4cac49288580f.ctex"]
 
 [params]
 

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpddg23mpguqo"]
+
+[ext_resource type="PackedScene" uid="uid://c80cdxklbeae1" path="res://powerups/power_up.tscn" id="1_a2xut"]
+[ext_resource type="Script" uid="uid://kjuro8kbmaxe" path="res://powerups/slow_down.gd" id="2_klwea"]
+
+[node name="SlowDown" instance=ExtResource("1_a2xut")]
+script = ExtResource("2_klwea")
+
+[node name="Sprite2D" parent="." index="0"]
+frame = 3
