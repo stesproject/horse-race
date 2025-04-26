@@ -97,6 +97,7 @@ func start():
 	direction = _get_random_direction()
 	set_physics_process(true)
 	audio_stream_gallop.play()
+	sprite_2d.rotation_degrees = 0
 	animate()
 
 
