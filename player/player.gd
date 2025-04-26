@@ -18,6 +18,7 @@ extends CharacterBody2D
 @onready var audio_stream_gallop: AudioStreamPlayer2D = $AudioStreamGallop
 @onready var blow_particles: GPUParticles2D = $BlowParticles
 @onready var power_sprite: Sprite2D = $PowerSprite
+@onready var direction_spinner: Node2D = $DirectionSpinner
 
 const HORSE_GALLOP = preload("res://player/sounds/horse-gallop.ogg")
 const HORSE_JOIN_SE = preload("res://player/sounds/horse-join-se.tres")
@@ -29,6 +30,7 @@ var direction: Vector2:
 	set(value):
 		direction = value
 		hit_box.rotation = direction.angle()
+		direction_spinner.rotation = direction.angle()
 var key_input := KEY_0
 var hits := 0:
 	set(value):
@@ -70,6 +72,7 @@ func _ready() -> void:
 	SignalBus.slow_down.connect(func(player, duration):
 		if player != self:
 			increment_speed(0.5, duration))
+	set_random_direction()
 	start()
 
 
@@ -86,15 +89,24 @@ func _physics_process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	var valid = event is InputEventJoypadButton or event is InputEventKey
-	if valid and event.pressed:
+	if valid:
 		var key = event.button_index if event is InputEventJoypadButton else event.keycode
-		if key == key_input and cooldown_timer.time_left == 0:
-			if in_hitbox_area:
-				attack()
+		if key != key_input or cooldown_timer.time_left != 0:
+			return
+		if in_hitbox_area and event.pressed:
+			attack()
+		elif event.pressed:
+			stop()
+			direction_spinner.enable()
+		elif event.is_released():
+			cooldown_timer.start()
+			direction_spinner.disable()
+			set_direction_spinner_direction()
+			start()
+			
 
 
 func start():
-	direction = _get_random_direction()
 	set_physics_process(true)
 	audio_stream_gallop.play()
 	sprite_2d.rotation_degrees = 0
@@ -137,6 +149,7 @@ func hurt():
 	TweenAnim.spin(sprite_2d, 2, 0.5)
 	recovery_timer.start()
 	await recovery_timer.timeout
+	set_random_direction()
 	start()
 
 
@@ -186,6 +199,15 @@ func enable_fury_attack(duration: float):
 	fury_attack = true
 	await get_tree().create_timer(duration).timeout
 	fury_attack = false
+
+
+func set_random_direction():
+	direction = _get_random_direction()
+
+
+func set_direction_spinner_direction():
+	var dir = direction_spinner.get_direction()
+	direction = dir
 
 
 func _get_random_direction():

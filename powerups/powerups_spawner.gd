@@ -6,6 +6,7 @@ extends Node2D
 const SLOW_DOWN = preload("res://powerups/slow_down.tscn")
 const SPEED_UP = preload("res://powerups/speed_up.tscn")
 const SHIELD = preload("res://powerups/shield.tscn")
+const FURY_ATTACK = preload("res://powerups/fury_attack.tscn")
 const MAX_SPAWNED_POWERUPS = 5
 
 @onready var timer: Timer = $Timer
@@ -14,7 +15,7 @@ var powerups: Array
 
 
 func _ready() -> void:
-	powerups = [SLOW_DOWN, SPEED_UP, SHIELD]
+	powerups = [SLOW_DOWN, SPEED_UP, SHIELD, FURY_ATTACK]
 	await SignalBus.start_race
 	_start_timer()
 

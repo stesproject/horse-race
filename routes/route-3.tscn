@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpduf7y5u3g3g"]
+[gd_scene load_steps=9 format=3 uid="uid://dpduf7y5u3g3g"]
 
 [ext_resource type="PackedScene" uid="uid://bwl5yl3fh7uta" path="res://routes/route-base.tscn" id="1_c2t58"]
 [ext_resource type="PackedScene" uid="uid://nbiqo6bpecjq" path="res://routes/arrive.tscn" id="2_ssq4b"]
@@ -6,8 +6,7 @@
 [ext_resource type="Shader" uid="uid://cy6qclpfcb2af" path="res://shaders/apply_texture.gdshader" id="4_g8yxi"]
 [ext_resource type="Texture2D" uid="uid://cxeusv86kb2c3" path="res://routes/route-3.png" id="5_axvkg"]
 [ext_resource type="Texture2D" uid="uid://bwdgouncjxbuq" path="res://routes/grass-texture-a.png" id="5_ssq4b"]
-[ext_resource type="PackedScene" uid="uid://cfohxk5u8b2wq" path="res://powerups/speed_up.tscn" id="7_6pvud"]
-[ext_resource type="PackedScene" uid="uid://bjd4it54fj56" path="res://powerups/fury_attack.tscn" id="8_g8yxi"]
+[ext_resource type="PackedScene" uid="uid://v4qrmcxkm5r0" path="res://powerups/powerups_spawner.tscn" id="7_6pvud"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_757yu"]
 shader = ExtResource("4_g8yxi")
@@ -66,12 +65,23 @@ material = SubResource("ShaderMaterial_757yu")
 position = Vector2(780, 331)
 texture = ExtResource("5_axvkg")
 
-[node name="SpeedUp" parent="Props" index="0" instance=ExtResource("7_6pvud")]
-z_index = 0
-position = Vector2(457, -12)
+[node name="PowerupsSpawner" parent="Props" index="0" instance=ExtResource("7_6pvud")]
+position = Vector2(399, -105)
 
-[node name="FuryAttack" parent="Props" index="1" instance=ExtResource("8_g8yxi")]
-position = Vector2(227, -50)
+[node name="PowerupsSpawner2" parent="Props" index="1" instance=ExtResource("7_6pvud")]
+position = Vector2(694, 114)
 
-[node name="FuryAttack2" parent="Props" index="2" instance=ExtResource("8_g8yxi")]
-position = Vector2(225, 39)
+[node name="PowerupsSpawner3" parent="Props" index="2" instance=ExtResource("7_6pvud")]
+position = Vector2(1280, 172)
+
+[node name="PowerupsSpawner4" parent="Props" index="3" instance=ExtResource("7_6pvud")]
+position = Vector2(99, 280)
+
+[node name="PowerupsSpawner5" parent="Props" index="4" instance=ExtResource("7_6pvud")]
+position = Vector2(70, 639)
+
+[node name="PowerupsSpawner6" parent="Props" index="5" instance=ExtResource("7_6pvud")]
+position = Vector2(751, 736)
+
+[node name="PowerupsSpawner7" parent="Props" index="6" instance=ExtResource("7_6pvud")]
+position = Vector2(1062, 734)

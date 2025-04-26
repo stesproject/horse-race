@@ -9,6 +9,3 @@ duration = 5.0
 
 [node name="Sprite2D" parent="." index="0"]
 frame = 2
-
-[node name="CollisionShape2D" parent="Area2D" index="0"]
-debug_color = Color(0.517426, 0.573673, 0.125294, 0.42)

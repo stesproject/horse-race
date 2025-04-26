@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bwdgouncjxbuq" path="res://routes/grass-texture-a.png" id="4_jd1eq"]
 [ext_resource type="Texture2D" uid="uid://dwe80ksljnn0s" path="res://routes/route-2.png" id="5_8s8cq"]
 [ext_resource type="PackedScene" uid="uid://nbiqo6bpecjq" path="res://routes/arrive.tscn" id="6_1tx1f"]
-[ext_resource type="PackedScene" uid="uid://bpddg23mpguqo" path="res://powerups/slow_down.tscn" id="7_w5n66"]
+[ext_resource type="PackedScene" uid="uid://v4qrmcxkm5r0" path="res://powerups/powerups_spawner.tscn" id="7_w5n66"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fmkxo"]
 shader = ExtResource("3_1ecp8")
@@ -67,6 +67,20 @@ texture = ExtResource("5_8s8cq")
 position = Vector2(1766, 393)
 scale = Vector2(1, 1.365)
 
-[node name="SlowDown" parent="Props" index="0" instance=ExtResource("7_w5n66")]
-z_index = 0
-position = Vector2(358, 9)
+[node name="PowerupsSpawner" parent="Props" index="0" instance=ExtResource("7_w5n66")]
+position = Vector2(334, 105)
+
+[node name="PowerupsSpawner2" parent="Props" index="1" instance=ExtResource("7_w5n66")]
+position = Vector2(866, -62)
+
+[node name="PowerupsSpawner3" parent="Props" index="2" instance=ExtResource("7_w5n66")]
+position = Vector2(1387, 352)
+
+[node name="PowerupsSpawner4" parent="Props" index="3" instance=ExtResource("7_w5n66")]
+position = Vector2(67, 530)
+
+[node name="PowerupsSpawner5" parent="Props" index="4" instance=ExtResource("7_w5n66")]
+position = Vector2(946, 586)
+
+[node name="PowerupsSpawner6" parent="Props" index="5" instance=ExtResource("7_w5n66")]
+position = Vector2(1553, 777)
