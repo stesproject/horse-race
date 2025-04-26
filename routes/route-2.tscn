@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://f8nchofkdxl2"]
 
 [ext_resource type="PackedScene" uid="uid://bwl5yl3fh7uta" path="res://routes/route-base.tscn" id="1_oiuuu"]
-[ext_resource type="Texture2D" uid="uid://m830d2gvme81" path="res://routes/ground-texture-a.png" id="2_w5n66"]
+[ext_resource type="Texture2D" uid="uid://rfmlmg1hurwx" path="res://routes/ground-texture-b.png" id="2_w5n66"]
 [ext_resource type="Shader" uid="uid://cy6qclpfcb2af" path="res://shaders/apply_texture.gdshader" id="3_1ecp8"]
 [ext_resource type="Texture2D" uid="uid://bwdgouncjxbuq" path="res://routes/grass-texture-a.png" id="4_jd1eq"]
 [ext_resource type="Texture2D" uid="uid://dwe80ksljnn0s" path="res://routes/route-2.png" id="5_8s8cq"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dpduf7y5u3g3g"]
+[gd_scene load_steps=10 format=3 uid="uid://dpduf7y5u3g3g"]
 
 [ext_resource type="PackedScene" uid="uid://bwl5yl3fh7uta" path="res://routes/route-base.tscn" id="1_c2t58"]
 [ext_resource type="PackedScene" uid="uid://nbiqo6bpecjq" path="res://routes/arrive.tscn" id="2_ssq4b"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cxeusv86kb2c3" path="res://routes/route-3.png" id="5_axvkg"]
 [ext_resource type="Texture2D" uid="uid://bwdgouncjxbuq" path="res://routes/grass-texture-a.png" id="5_ssq4b"]
 [ext_resource type="PackedScene" uid="uid://cfohxk5u8b2wq" path="res://powerups/speed_up.tscn" id="7_6pvud"]
+[ext_resource type="PackedScene" uid="uid://bjd4it54fj56" path="res://powerups/fury_attack.tscn" id="8_g8yxi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_757yu"]
 shader = ExtResource("4_g8yxi")
@@ -68,3 +69,9 @@ texture = ExtResource("5_axvkg")
 [node name="SpeedUp" parent="Props" index="0" instance=ExtResource("7_6pvud")]
 z_index = 0
 position = Vector2(457, -12)
+
+[node name="FuryAttack" parent="Props" index="1" instance=ExtResource("8_g8yxi")]
+position = Vector2(227, -50)
+
+[node name="FuryAttack2" parent="Props" index="2" instance=ExtResource("8_g8yxi")]
+position = Vector2(225, 39)

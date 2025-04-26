@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjd4it54fj56"]
+
+[ext_resource type="PackedScene" uid="uid://c80cdxklbeae1" path="res://powerups/power_up.tscn" id="1_be21s"]
+[ext_resource type="Script" uid="uid://cq5v4cu6cyttp" path="res://powerups/fury_attack.gd" id="2_hwjou"]
+
+[node name="FuryAttack" instance=ExtResource("1_be21s")]
+script = ExtResource("2_hwjou")
+
+[node name="Sprite2D" parent="." index="0"]
+frame = 1

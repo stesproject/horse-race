@@ -17,8 +17,8 @@ extends CharacterBody2D
 @onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var audio_stream_gallop: AudioStreamPlayer2D = $AudioStreamGallop
 @onready var blow_particles: GPUParticles2D = $BlowParticles
+@onready var power_sprite: Sprite2D = $PowerSprite
 
-const FLASH_COLOR_ATTACK = Color("#940000")
 const HORSE_GALLOP = preload("res://player/sounds/horse-gallop.ogg")
 const HORSE_JOIN_SE = preload("res://player/sounds/horse-join-se.tres")
 const HORSE_HURT_SE = preload("res://player/sounds/horse-hurt-se.tres")
@@ -35,7 +35,10 @@ var hits := 0:
 		hits = value
 		hits_label.text = str(hits)
 var in_hitbox_area: Player
-var invincible := false
+var invincible := false:
+	set(value):
+		power_sprite.visible = value
+var fury_attack := false
 
 
 func setup(_player_id: int, key, is_joypad := false):
@@ -104,15 +107,17 @@ func stop():
 
 
 func attack():
-	flash(FLASH_COLOR_ATTACK)
+	if !fury_attack:
+		flash(Color("#990000"), 0.6, 0.3)
 	play_sound(HORSE_ATTACK_SE)
 	blow_particles.emitting = true
 	cooldown_timer.start()
 	in_hitbox_area.hurt()
 	in_hitbox_area = null
-	hit_box.monitoring = false
-	await cooldown_timer.timeout
-	hit_box.monitoring = true
+	if !fury_attack:
+		hit_box.monitoring = false
+		await cooldown_timer.timeout
+		hit_box.monitoring = true
 
 
 func animate():
@@ -134,10 +139,11 @@ func hurt():
 	start()
 
 
-func flash(color: Color):
-	sprite_2d.modulate = color
-	await get_tree().create_timer(0.3).timeout
-	sprite_2d.modulate = Color.WHITE
+func flash(color: Color, intensity: float = 0.5, duration: float = 0.3):
+	sprite_2d.material.set_shader_parameter("glow_color", color)
+	sprite_2d.material.set_shader_parameter("glow_intensity", intensity)
+	await get_tree().create_timer(duration).timeout
+	sprite_2d.material.set_shader_parameter("glow_intensity", 0)
 
 
 func win():
@@ -154,14 +160,14 @@ func play_sound(stream: AudioStream):
 
 func increment_speed(increment: float, duration: float):
 	if increment > 1.0:
-		sprite_2d.modulate = Color.ORANGE_RED
+		flash(Color("#ffee00"), 0.35, duration)
 		play_sound(HORSE_JOIN_SE)
 	else:
-		sprite_2d.modulate = Color.SKY_BLUE
+		flash(Color("#007cea"), 0.7, duration)
 	speed *= increment
 	await get_tree().create_timer(duration).timeout
 	speed /= increment
-	sprite_2d.modulate = Color.WHITE
+	sprite_2d.material.set_shader_parameter("glow_intensity", 0)
 
 
 func invincibility(duration: float):
@@ -171,6 +177,14 @@ func invincibility(duration: float):
 	await get_tree().create_timer(duration).timeout
 	invincible = false
 	sprite_2d.modulate = Color.WHITE
+
+
+func enable_fury_attack(duration: float):
+	flash(Color("#990000"), 0.6, duration)
+	play_sound(HORSE_JOIN_SE)
+	fury_attack = true
+	await get_tree().create_timer(duration).timeout
+	fury_attack = false
 
 
 func _get_random_direction():
@@ -184,6 +198,8 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 	if area.owner == self:
 		return
 	in_hitbox_area = area.owner
+	if in_hitbox_area and fury_attack:
+		attack()
 
 
 func _on_hit_box_area_exited(area: Area2D) -> void:

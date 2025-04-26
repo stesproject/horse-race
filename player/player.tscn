@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://ch4o4vh6ygj3b"]
+[gd_scene load_steps=12 format=3 uid="uid://ch4o4vh6ygj3b"]
 
 [ext_resource type="Script" uid="uid://bqg8wxwrn3qt3" path="res://player/player.gd" id="1_c4pnv"]
 [ext_resource type="Script" uid="uid://cmca42ot4hlfv" path="res://VFEZ-godot-main/vfez_material_2d.gd" id="2_x7bl2"]
 [ext_resource type="Texture2D" uid="uid://b0ixbdxnww8mq" path="res://player/horse-sprite-1.png" id="3_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://ubh3yp1tr4up" path="res://player/horse-details-1.png" id="4_g6k8r"]
+[ext_resource type="Texture2D" uid="uid://c31bvuhktkc4x" path="res://powerups/powerups.png" id="5_boad6"]
 [ext_resource type="PackedScene" uid="uid://df1chhurs07yt" path="res://player/blow_particles.tscn" id="5_g6k8r"]
 [ext_resource type="AudioStream" uid="uid://bwqgpc1r3ucm" path="res://player/sounds/horse-gallop.ogg" id="5_qjkh3"]
 
@@ -23,6 +24,7 @@ code = "
 shader_type canvas_item;
 #define BLEND_MIX
 #define COLOR_CHANGE
+#define COLOR_GLOW
 #include \"res://VFEZ-godot-main/Shaders/vfez_2d_template.gdshaderinc\"
 "
 
@@ -83,7 +85,11 @@ shader_parameter/use_color_ghost = false
 shader_parameter/use_color_hologram = false
 shader_parameter/use_color_posterize = false
 shader_parameter/use_color_negative = false
-shader_parameter/use_color_glow = false
+shader_parameter/use_color_glow = true
+shader_parameter/glow_color = Color(1, 1, 1, 1)
+shader_parameter/glow_intensity = 0.0
+shader_parameter/glow_intensity_global = 1.0
+shader_parameter/use_glow_texture = false
 shader_parameter/use_color_hsv_shift = false
 shader_parameter/use_color_shadow = false
 shader_parameter/use_color_greyscale = false
@@ -121,6 +127,15 @@ texture = ExtResource("3_qjkh3")
 
 [node name="SpriteDetails" type="Sprite2D" parent="Sprite2D"]
 texture = ExtResource("4_g6k8r")
+
+[node name="PowerSprite" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.619608)
+position = Vector2(-8, -18)
+texture = ExtResource("5_boad6")
+hframes = 2
+vframes = 2
+frame = 2
 
 [node name="BlowParticles" parent="." instance=ExtResource("5_g6k8r")]
 position = Vector2(0, -13)
