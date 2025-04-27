@@ -41,6 +41,7 @@ var in_hitbox_area: Player
 var invincible := false:
 	set(value):
 		power_sprite.visible = value
+		invincible = value
 var fury_attack := false
 
 

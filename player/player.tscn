@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ch4o4vh6ygj3b"]
+[gd_scene load_steps=20 format=3 uid="uid://ch4o4vh6ygj3b"]
 
 [ext_resource type="Script" uid="uid://bqg8wxwrn3qt3" path="res://player/player.gd" id="1_c4pnv"]
 [ext_resource type="Script" uid="uid://cmca42ot4hlfv" path="res://VFEZ-godot-main/vfez_material_2d.gd" id="2_x7bl2"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bwqgpc1r3ucm" path="res://player/sounds/horse-gallop.ogg" id="5_qjkh3"]
 [ext_resource type="Script" uid="uid://cmtph5s0l4l2w" path="res://player/direction_spinner.gd" id="8_hg6s5"]
 [ext_resource type="Texture2D" uid="uid://cbl468kufjl2a" path="res://player/arrow-r.png" id="8_rgyib"]
+[ext_resource type="Script" uid="uid://bxap28oo5kyhx" path="res://player/cooldown_bar.gd" id="10_8t03j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_udsfw"]
 radius = 25.0
@@ -149,6 +150,32 @@ _data = {
 &"spin": SubResource("Animation_hg6s5")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hg6s5"]
+bg_color = Color(0, 0, 0, 0.392157)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t03j"]
+bg_color = Color(0.711838, 0.0618014, 3.85046e-07, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 10
 collision_layer = 4
@@ -259,6 +286,32 @@ texture = ExtResource("8_rgyib")
 
 [node name="DirectionMarker" type="Marker2D" parent="DirectionSpinner/Marker2D"]
 position = Vector2(111, 0)
+
+[node name="CooldownBar" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -48.0
+offset_top = -54.0
+offset_right = 44.0
+offset_bottom = 38.0
+script = ExtResource("10_8t03j")
+
+[node name="ProgressBar" type="ProgressBar" parent="CooldownBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 34.0
+offset_right = -14.0
+offset_bottom = -46.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_hg6s5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8t03j")
+max_value = 10.0
+show_percentage = false
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="area_exited" from="HitBox" to="." method="_on_hit_box_area_exited"]

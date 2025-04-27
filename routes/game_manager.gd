@@ -5,6 +5,7 @@ extends Node2D
 @onready var players: Node2D = $"../Players"
 @onready var starting_positions: Node2D = $"../StartingPositions"
 @onready var phantom_camera_2d: PhantomCamera2D = $"../PhantomCamera2D"
+@onready var continue_button: Button = $"../CanvasLayer/ContinueButton"
 
 const HORSE = preload("res://player/player.tscn")
 
@@ -15,7 +16,7 @@ var ready_to_start := false
 func _ready() -> void:
 	TweenAnim.pulse(message, 0.05, 0.3, 1)
 	SignalBus.win_race.connect(stop_race)
-
+	continue_button.pressed.connect(exit_race)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -55,6 +56,11 @@ func stop_race(winner: Player):
 	phantom_camera_2d.follow_mode = PhantomCamera2D.FollowMode.GLUED
 	phantom_camera_2d.follow_target = winner
 	phantom_camera_2d.zoom = Vector2(2, 2)
+
+
+func exit_race():
+	var main_menu = load("res://menu/level_selection_menu.tscn")
+	get_tree().call_deferred("change_scene_to_packed", main_menu)
 
 
 func _init_camera():

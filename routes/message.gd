@@ -1,6 +1,7 @@
 extends Control
 
 @onready var rich_text_label: RichTextLabel = $RichTextLabel
+@onready var continue_button: Button = $"../ContinueButton"
 
 
 func _ready() -> void:
@@ -12,5 +13,7 @@ func show_winner(winner: Player):
 	rich_text_label.add_theme_color_override("default_color", Color("#ffd900"))
 	rich_text_label.add_theme_color_override("font_outline_color", Color("#94000a"))
 	rich_text_label.add_theme_constant_override("outline_size", 18)
-	rich_text_label.text = "%s WINS!" % winner.name
+	rich_text_label.text = "%s wins!" % winner.name
 	show()
+	await get_tree().create_timer(3.5).timeout
+	continue_button.show()

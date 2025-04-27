@@ -127,6 +127,23 @@ text = "Press any key to join..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ContinueButton" type="Button" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = 70.0
+offset_right = 110.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_7hhdg")
+theme_override_font_sizes/font_size = 48
+text = "CONTINUE"
+
 [node name="GameStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 
 [node name="Props" type="Node2D" parent="."]
