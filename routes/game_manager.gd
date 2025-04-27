@@ -15,6 +15,7 @@ const HORSE = preload("res://player/player.tscn")
 
 var keys: Array[Key]
 var ready_to_start := false
+var player_id := 1
 
 
 func _ready() -> void:
@@ -50,7 +51,7 @@ func get_players_total() -> int:
 func add_player(key: int, is_joypad := false):
 	var player: Player = HORSE.instantiate()
 	players.add_child(player)
-	player.setup(get_players_total(), key, is_joypad)
+	player.setup(player_id, key, is_joypad)
 	player.position = get_random_point_in_area()
 
 

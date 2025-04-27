@@ -45,7 +45,7 @@ var invincible := false:
 var fury_attack := false
 
 
-func setup(_player_id: int, key, is_joypad := false):
+func setup(player_id: int, key, is_joypad := false):
 	player_name.text += OS.get_keycode_string(key) if !is_joypad else str(key)
 	self.name = player_name.text
 	key_input = key
@@ -57,6 +57,7 @@ func setup(_player_id: int, key, is_joypad := false):
 	)
 	sprite_2d.material.set_shader_parameter("color_1_to_replace", color)
 	play_sound(HORSE_JOIN_SE)
+	set_multiplayer_authority(player_id)
 	print(player_name.text, " joined the race!")
 
 
@@ -76,7 +77,8 @@ func _ready() -> void:
 	SignalBus.slow_down.connect(func(player, duration):
 		if player.name != self.name:
 			increment_speed(0.5, duration))
-	set_random_direction()
+	if is_multiplayer_authority():
+		set_random_direction()
 	start()
 
 
@@ -86,12 +88,16 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if !is_multiplayer_authority():
+		return
 	var collision = move_and_collide(direction * speed * delta)
 	if collision:
 		direction = direction.bounce(collision.get_normal())
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if !is_multiplayer_authority():
+		return
 	var valid = event is InputEventJoypadButton or event is InputEventKey
 	if valid:
 		var key = event.button_index if event is InputEventJoypadButton else event.keycode
