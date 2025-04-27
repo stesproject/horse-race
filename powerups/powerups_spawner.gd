@@ -19,7 +19,7 @@ var powerups: Array
 
 
 func _ready() -> void:
-	powerups = [SHIELD, FURY_ATTACK]
+	powerups = [SLOW_DOWN, SPEED_UP, SHIELD, FURY_ATTACK]
 	await SignalBus.start_race
 	_start_timer()
 
