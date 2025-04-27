@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bwl5yl3fh7uta"]
+[gd_scene load_steps=12 format=3 uid="uid://bwl5yl3fh7uta"]
 
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_08vwb"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_7hj3e"]
@@ -18,6 +18,13 @@ transition = 0
 ease = 2
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7hj3e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7hhdg"]
+bg_color = Color(0.14, 0.07448, 0.0392, 0.713726)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="Route" type="Node2D"]
 
@@ -121,6 +128,33 @@ theme_override_font_sizes/normal_font_size = 48
 text = "Press any key to join..."
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Controls" type="Panel" parent="CanvasLayer/Message"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -230.0
+offset_top = 16.0
+offset_right = -17.0
+offset_bottom = 277.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7hhdg")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Message/Controls"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -90.5
+offset_top = 15.0
+offset_right = 92.5
+offset_bottom = 247.0
+grow_horizontal = 2
+text = "Use the pressed button to control your horse:
+- Press (in front of opponents): ATTACK
+- Press and release: ADJUST DIRECTION"
+scroll_active = false
 
 [node name="ContinueButton" type="Button" parent="CanvasLayer"]
 visible = false

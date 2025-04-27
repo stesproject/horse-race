@@ -83,4 +83,33 @@ min_value = 1.0
 max_value = 10.0
 value = 5.0
 
+[node name="Powerups" type="HBoxContainer" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 34.0
+offset_top = -119.0
+offset_right = -34.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="PowerupsLabel" type="RichTextLabel" parent="Panel/Powerups"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Powerups"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="Panel/Powerups"]
+layout_mode = 2
+size_flags_horizontal = 3
+button_pressed = true
+text = "enabled"
+
 [connection signal="value_changed" from="Panel/HorsesSpeed/HorsesSpeedSlider" to="Panel/HorsesSpeed" method="_on_horses_speed_slider_value_changed"]
