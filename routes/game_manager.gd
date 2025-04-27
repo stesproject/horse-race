@@ -3,9 +3,13 @@ extends Node2D
 
 @onready var message: Control = $"../CanvasLayer/Message/RichTextLabel"
 @onready var players: Node2D = $"../Players"
-@onready var starting_positions: Node2D = $"../StartingPositions"
 @onready var phantom_camera_2d: PhantomCamera2D = $"../PhantomCamera2D"
 @onready var continue_button: Button = $"../CanvasLayer/ContinueButton"
+
+@onready var starting_area: Area2D = $"../StartingArea"
+@onready var collision_starting_area = starting_area.get_child(0)
+@onready var spawnArea = collision_starting_area.shape.extents
+@onready var spawnAreaOrigin = collision_starting_area.global_position -  spawnArea
 
 const HORSE = preload("res://player/player.tscn")
 
@@ -44,12 +48,16 @@ func get_players_total() -> int:
 
 
 func add_player(key: int, is_joypad := false):
-	if get_players_total() >= starting_positions.get_child_count() - 1:
-		return
 	var player: Player = HORSE.instantiate()
 	players.add_child(player)
 	player.setup(get_players_total(), key, is_joypad)
-	player.position = starting_positions.get_child(get_players_total()).position
+	player.position = get_random_point_in_area()
+
+
+func get_random_point_in_area() -> Vector2:
+	var x = randf_range(spawnAreaOrigin.x, spawnArea.x)
+	var y = randf_range(spawnAreaOrigin.y, spawnArea.y)
+	return Vector2(x, y)
 
 
 func stop_race(winner: Player):

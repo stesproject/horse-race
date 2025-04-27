@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://v4qrmcxkm5r0"]
+[gd_scene load_steps=3 format=3 uid="uid://v4qrmcxkm5r0"]
 
 [ext_resource type="Script" uid="uid://b6d8f85bu2025" path="res://powerups/powerups_spawner.gd" id="1_joxxo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_joxxo"]
+size = Vector2(62, 64)
 
 [node name="PowerupsSpawner" type="Marker2D"]
 gizmo_extents = 15.0
@@ -11,5 +14,10 @@ spawn_delay_range = Vector2(4, 8)
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_joxxo")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -53,11 +53,6 @@ auto_zoom_margin = Vector4(100, 100, 100, 100)
 draw_limits = true
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
-[node name="StartingPositions" type="Node2D" parent="."]
-
-[node name="P1" type="Marker2D" parent="StartingPositions"]
-position = Vector2(-12, 53)
-
 [node name="Players" type="Node2D" parent="."]
 y_sort_enabled = true
 
@@ -147,3 +142,7 @@ text = "CONTINUE"
 [node name="GameStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 
 [node name="Props" type="Node2D" parent="."]
+
+[node name="StartingArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartingArea"]

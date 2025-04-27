@@ -17,3 +17,4 @@ func show_winner(winner: Player):
 	show()
 	await get_tree().create_timer(3.5).timeout
 	continue_button.show()
+	continue_button.grab_focus()

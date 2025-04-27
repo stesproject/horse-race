@@ -1,10 +1,11 @@
 class_name Player
 extends CharacterBody2D
 
-@export var speed := 250.0
+@export var speed := 50.0
 @export var cooldown := 2.0
 @export var recovery_time := 0.75
 @export var start_at_ready := false
+@export var key_input := KEY_1
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var sprite_details: Sprite2D = $Sprite2D/SpriteDetails
@@ -32,7 +33,6 @@ var direction: Vector2:
 		direction = value
 		hit_box.rotation = direction.angle()
 		direction_spinner.rotation = direction.angle()
-var key_input := KEY_0
 var hits := 0:
 	set(value):
 		hits = value
@@ -63,6 +63,7 @@ func setup(_player_id: int, key, is_joypad := false):
 func _ready() -> void:
 	stop()
 	set_process_unhandled_input(false)
+	speed = speed * SignalBus.horses_speed
 	animation_timer.wait_time = anim_speed * 2
 	cooldown_timer.wait_time = cooldown
 	recovery_timer.wait_time = recovery_time
@@ -94,7 +95,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	var valid = event is InputEventJoypadButton or event is InputEventKey
 	if valid:
 		var key = event.button_index if event is InputEventJoypadButton else event.keycode
-		if key != key_input or cooldown_timer.time_left != 0:
+		if key != key_input or cooldown_timer.time_left != 0 or recovery_timer.time_left != 0:
 			return
 		if in_hitbox_area and event.pressed:
 			attack()

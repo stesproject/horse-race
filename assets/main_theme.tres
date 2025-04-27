@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://s3wtefxt0egu"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://s3wtefxt0egu"]
 
 [ext_resource type="FontFile" uid="uid://bv1ek68m8w1bw" path="res://assets/Perfect Delight 1992.otf" id="1_xgdp2"]
 
@@ -16,6 +16,12 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_611f8"]
+bg_color = Color(1, 0.490196, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pefyd"]
+bg_color = Color(1, 0.490196, 0, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0arac"]
 bg_color = Color(0.14, 0.07616, 0.0392, 1)
 
@@ -26,4 +32,6 @@ Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_color = Color(0, 0, 0, 1)
 Button/styles/hover = SubResource("StyleBoxFlat_xgdp2")
 Button/styles/normal = SubResource("StyleBoxFlat_d80jv")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_611f8")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_pefyd")
 Panel/styles/panel = SubResource("StyleBoxFlat_0arac")

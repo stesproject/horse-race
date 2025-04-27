@@ -4,9 +4,17 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Player2" parent="." instance=ExtResource("1_wtcfe")]
+[node name="Player1" parent="." instance=ExtResource("1_wtcfe")]
 position = Vector2(134, 0)
 start_at_ready = true
+
+[node name="Camera2D" type="Camera2D" parent="Player1"]
+position = Vector2(-134, 0)
+
+[node name="Player2" parent="." instance=ExtResource("1_wtcfe")]
+position = Vector2(257, 0)
+start_at_ready = true
+key_input = 50
 
 [node name="Camera2D" type="Camera2D" parent="Player2"]
 position = Vector2(-134, 0)

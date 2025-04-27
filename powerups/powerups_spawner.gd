@@ -11,6 +11,10 @@ const MAX_SPAWNED_POWERUPS = 5
 
 @onready var timer: Timer = $Timer
 
+@onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
+@onready var spawnArea = collision_shape_2d.shape.extents
+@onready var spawnAreaOrigin = collision_shape_2d.global_position -  spawnArea
+
 var powerups: Array
 
 
@@ -27,11 +31,18 @@ func _on_timer_timeout() -> void:
 	var spawned_powerups = get_tree().get_nodes_in_group("powerup").size()
 	if spawned_powerups >= MAX_SPAWNED_POWERUPS:
 		return
-	if get_child_count() >= 2:
+	if get_child_count() >= 3:
 		return
 	var powerup = powerups[randi() % powerups.size()].instantiate()
+	# powerup.global_position = get_random_point_in_area()
 	add_child(powerup)
 	_start_timer()
+
+
+func get_random_point_in_area() -> Vector2:
+	var x = randf_range(spawnAreaOrigin.x, spawnArea.x)
+	var y = randf_range(spawnAreaOrigin.y, spawnArea.y)
+	return Vector2(x, y)
 
 
 func _start_timer():

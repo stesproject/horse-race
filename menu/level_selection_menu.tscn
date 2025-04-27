@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ty40j66gsa25"]
+[gd_scene load_steps=5 format=3 uid="uid://ty40j66gsa25"]
 
 [ext_resource type="Theme" uid="uid://s3wtefxt0egu" path="res://assets/main_theme.tres" id="1_xuy6g"]
 [ext_resource type="Script" uid="uid://ceqcmeufvwdyc" path="res://menu/level_selection_menu.gd" id="2_6sy1o"]
 [ext_resource type="PackedScene" uid="uid://bxv42yq4otl6k" path="res://menu/route_button.tscn" id="3_6jcch"]
+[ext_resource type="Script" uid="uid://diud461f032oa" path="res://menu/horses_speed.gd" id="4_uxuka"]
 
 [node name="LevelSelectionMenu" type="Control"]
 layout_mode = 3
@@ -50,3 +51,36 @@ grow_vertical = 2
 theme_override_constants/h_separation = 24
 theme_override_constants/v_separation = 24
 columns = 3
+
+[node name="HorsesSpeed" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 34.0
+offset_top = -60.0
+offset_right = -34.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 100
+alignment = 1
+script = ExtResource("4_uxuka")
+
+[node name="HorsesSpeedLabel" type="RichTextLabel" parent="Panel/HorsesSpeed"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Horses Speed"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="HorsesSpeedSlider" type="HSlider" parent="Panel/HorsesSpeed"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 1.0
+max_value = 10.0
+value = 5.0
+
+[connection signal="value_changed" from="Panel/HorsesSpeed/HorsesSpeedSlider" to="Panel/HorsesSpeed" method="_on_horses_speed_slider_value_changed"]
