@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwl5yl3fh7uta"]
+[gd_scene load_steps=11 format=3 uid="uid://bwl5yl3fh7uta"]
 
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_08vwb"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_7hj3e"]
 [ext_resource type="Script" uid="uid://osyqpo43potd" path="res://routes/game_manager.gd" id="2_je6kt"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_jgchk"]
+[ext_resource type="Theme" uid="uid://s3wtefxt0egu" path="res://assets/main_theme.tres" id="5_7hhdg"]
 [ext_resource type="Script" uid="uid://dvesrdiolfx41" path="res://routes/message.gd" id="6_ciplp"]
 [ext_resource type="Script" uid="uid://bk1jmrudd51od" path="res://routes/countdown.gd" id="7_j0q2m"]
 
@@ -72,6 +73,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_7hhdg")
 script = ExtResource("7_j0q2m")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Countdown"]
@@ -106,6 +108,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_7hhdg")
 script = ExtResource("6_ciplp")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Message"]
@@ -119,7 +122,7 @@ offset_bottom = 73.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(554, 76)
-theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/normal_font_size = 48
 text = "Press any key to join..."
 horizontal_alignment = 1
 vertical_alignment = 1

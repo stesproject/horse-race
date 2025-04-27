@@ -72,7 +72,7 @@ func _ready() -> void:
 	set_process_unhandled_input(true)
 	SignalBus.win_race.connect(func(_winner): stop())
 	SignalBus.slow_down.connect(func(player, duration):
-		if player != self:
+		if player.name != self.name:
 			increment_speed(0.5, duration))
 	set_random_direction()
 	start()

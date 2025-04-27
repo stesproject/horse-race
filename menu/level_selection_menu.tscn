@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://ty40j66gsa25"]
+
+[ext_resource type="Theme" uid="uid://s3wtefxt0egu" path="res://assets/main_theme.tres" id="1_xuy6g"]
+[ext_resource type="Script" uid="uid://ceqcmeufvwdyc" path="res://menu/level_selection_menu.gd" id="2_6sy1o"]
+[ext_resource type="PackedScene" uid="uid://bxv42yq4otl6k" path="res://menu/route_button.tscn" id="3_6jcch"]
+
+[node name="LevelSelectionMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xuy6g")
+script = ExtResource("2_6sy1o")
+route_button = ExtResource("3_6jcch")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 117.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 96
+text = "Select a route"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RouteButtonsContainer" type="GridContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -601.0
+offset_top = -244.0
+offset_right = 601.0
+offset_bottom = 326.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 24
+columns = 3

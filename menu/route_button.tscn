@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bxv42yq4otl6k"]
+
+[node name="RouteButton" type="Button"]
+custom_minimum_size = Vector2(0, 160)
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 96
+text = "1"
