@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var speed := 250.0
 @export var cooldown := 2.0
 @export var recovery_time := 0.75
+@export var start_at_ready := false
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var sprite_details: Sprite2D = $Sprite2D/SpriteDetails
@@ -66,7 +67,8 @@ func _ready() -> void:
 	recovery_timer.wait_time = recovery_time
 	var unique_material = sprite_2d.material.duplicate() as ShaderMaterial
 	sprite_2d.material = unique_material
-	await SignalBus.start_race
+	if !start_at_ready:
+		await SignalBus.start_race
 	set_process_unhandled_input(true)
 	SignalBus.win_race.connect(func(_winner): stop())
 	SignalBus.slow_down.connect(func(player, duration):
@@ -100,8 +102,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			direction_spinner.enable()
 		elif event.is_released():
 			cooldown_timer.start()
-			direction_spinner.disable()
 			set_direction_spinner_direction()
+			direction_spinner.disable()
 			start()
 			
 
@@ -206,13 +208,12 @@ func set_random_direction():
 
 
 func set_direction_spinner_direction():
-	var dir = direction_spinner.get_direction()
-	direction = dir
+	direction = direction_spinner.get_direction()
 
 
 func _get_random_direction():
 	var new_dir = Vector2()
-	new_dir.x = [1, -1].pick_random()
+	new_dir.x = randf_range(-1, 1)
 	new_dir.y = randf_range(-1, 1)
 	return new_dir.normalized()
 

@@ -15,4 +15,4 @@ func disable():
 
 
 func get_direction():
-	return global_position.direction_to(direction_marker.global_position)
+	return global_position.direction_to(direction_marker.global_position).normalized()

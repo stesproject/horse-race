@@ -48,7 +48,7 @@ tween_resource = SubResource("Resource_je6kt")
 auto_zoom = true
 auto_zoom_min = 0.25
 auto_zoom_max = 1.0
-auto_zoom_margin = Vector4(50, 50, 50, 50)
+auto_zoom_margin = Vector4(100, 100, 100, 100)
 draw_limits = true
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 

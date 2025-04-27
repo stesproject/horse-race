@@ -248,6 +248,7 @@ script = ExtResource("8_hg6s5")
 libraries = {
 &"": SubResource("AnimationLibrary_2ieo8")
 }
+speed_scale = 0.75
 
 [node name="Marker2D" type="Marker2D" parent="DirectionSpinner"]
 
