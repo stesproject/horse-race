@@ -11,4 +11,4 @@ func _ready() -> void:
 func _on_horses_speed_slider_value_changed(value: float) -> void:
 	horses_speed_label.text = "Horses Speed: 0"
 	horses_speed_label.text = horses_speed_label.text.replace("0", str(value))
-	SignalBus.horses_speed = value
+	Globals.horses_speed = value

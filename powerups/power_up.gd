@@ -10,6 +10,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		queue_free()
 
 
-func apply_powerup(player: Player):
+func apply_powerup(_player: Player):
 	pass
 	

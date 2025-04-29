@@ -1,10 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://bwl5yl3fh7uta"]
+[gd_scene load_steps=12 format=3 uid="uid://bwl5yl3fh7uta"]
 
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_08vwb"]
-[ext_resource type="Script" uid="uid://sbxf1l3m076a" path="res://routes/route_base.gd" id="1_q5jpu"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_7hj3e"]
 [ext_resource type="Script" uid="uid://osyqpo43potd" path="res://routes/game_manager.gd" id="2_je6kt"]
-[ext_resource type="PackedScene" uid="uid://ch4o4vh6ygj3b" path="res://player/player.tscn" id="2_yydym"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_jgchk"]
 [ext_resource type="Theme" uid="uid://s3wtefxt0egu" path="res://assets/main_theme.tres" id="5_7hhdg"]
 [ext_resource type="Script" uid="uid://dvesrdiolfx41" path="res://routes/message.gd" id="6_ciplp"]
@@ -29,8 +27,6 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [node name="Route" type="Node2D"]
-script = ExtResource("1_q5jpu")
-player_scene = ExtResource("2_yydym")
 
 [node name="GameManager" type="Node2D" parent="."]
 script = ExtResource("2_je6kt")
@@ -177,30 +173,6 @@ theme = ExtResource("5_7hhdg")
 theme_override_font_sizes/font_size = 48
 text = "CONTINUE"
 
-[node name="MultiplayerButtons" type="MarginContainer" parent="CanvasLayer"]
-offset_right = 128.0
-offset_bottom = 56.0
-size_flags_horizontal = 0
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MultiplayerButtons"]
-layout_mode = 2
-theme = ExtResource("5_7hhdg")
-theme_override_constants/separation = 16
-
-[node name="HostButton" type="Button" parent="CanvasLayer/MultiplayerButtons/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Host"
-
-[node name="JoinButton" type="Button" parent="CanvasLayer/MultiplayerButtons/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Join"
-
 [node name="GameStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 
 [node name="Props" type="Node2D" parent="."]
@@ -212,6 +184,3 @@ text = "Join"
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("uid://ch4o4vh6ygj3b")
 spawn_path = NodePath("../Players")
-
-[connection signal="pressed" from="CanvasLayer/MultiplayerButtons/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/MultiplayerButtons/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]

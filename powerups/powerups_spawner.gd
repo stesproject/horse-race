@@ -20,23 +20,40 @@ var powerups: Array
 
 func _ready() -> void:
 	powerups = [SLOW_DOWN, SPEED_UP, SHIELD, FURY_ATTACK]
+	#if Globals.online_game and multiplayer.is_server():
+		#powerups_spawner.spawn_function = _spawn_powerup
 	await SignalBus.start_race
-	_start_timer()
+	if !Globals.online_game or Globals.online_game and multiplayer.is_server():
+		_start_timer()
 
 
 func _on_timer_timeout() -> void:
-	if randf() < spawn_chance:
-		_start_timer()
+	var can_spawn = _check_powerup_spawn()
+	_start_timer()
+	if !can_spawn:
 		return
+	#if Globals.online_game and multiplayer.is_server():
+		#powerups_spawner.spawn()
+		#return
+	var powerup = _spawn_powerup()
+	if powerup:
+		add_child(powerup)
+
+
+func _check_powerup_spawn() -> bool:
+	if randf() < spawn_chance:
+		return false
 	var spawned_powerups = get_tree().get_nodes_in_group("powerup").size()
 	if spawned_powerups >= MAX_SPAWNED_POWERUPS:
-		return
+		return false
 	if get_child_count() >= 3:
-		return
+		return false
+	return true
+
+
+func _spawn_powerup():
 	var powerup = powerups[randi() % powerups.size()].instantiate()
-	# powerup.global_position = get_random_point_in_area()
-	add_child(powerup)
-	_start_timer()
+	return powerup
 
 
 func get_random_point_in_area() -> Vector2:

@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=3 uid="uid://db4s14wqsrtqs"]
+
+[ext_resource type="Theme" uid="uid://s3wtefxt0egu" path="res://assets/main_theme.tres" id="1_o5w3e"]
+[ext_resource type="Texture2D" uid="uid://c36dm0ookcbhq" path="res://horse-race-icon.png" id="2_1x3cv"]
+[ext_resource type="Script" uid="uid://c32t6bujjg7s1" path="res://menu/main_menu.gd" id="2_jc45y"]
+[ext_resource type="Texture2D" uid="uid://b7bxy50gyatk5" path="res://assets/horse-race-logo.png" id="3_jc45y"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_o5w3e")
+script = ExtResource("2_jc45y")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureBg" type="TextureRect" parent="Panel"]
+modulate = Color(1, 1, 1, 0.0784314)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1x3cv")
+
+[node name="TextureLogo" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -305.0
+offset_top = 18.0
+offset_right = 306.0
+offset_bottom = 130.0
+grow_horizontal = 2
+texture = ExtResource("3_jc45y")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -151.0
+offset_top = -297.0
+offset_right = 151.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 12
+
+[node name="ButtonLocal" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Local multiplayer"
+
+[node name="ButtonJoin" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Join a game"
+
+[node name="ButtonHost" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Host a game"
+
+[connection signal="pressed" from="Panel/VBoxContainer/ButtonLocal" to="." method="_on_button_local_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/ButtonJoin" to="." method="_on_button_join_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/ButtonHost" to="." method="_on_button_host_pressed"]

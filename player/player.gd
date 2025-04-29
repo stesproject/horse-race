@@ -28,6 +28,11 @@ const HORSE_HURT_SE = preload("res://player/sounds/horse-hurt-se.tres")
 const HORSE_ATTACK_SE = preload("res://player/sounds/horse-attack-se.tres")
 const WIN_SE = preload("res://player/win-se.ogg")
 
+@export var color := Color(1, 1, 1, 1):
+	set(value):
+		color = value
+		if sprite_2d:
+			sprite_2d.material.set_shader_parameter("color_1_to_replace", color)
 var direction: Vector2:
 	set(value):
 		direction = value
@@ -45,26 +50,10 @@ var invincible := false:
 var fury_attack := false
 
 
-func setup(player_id: int, key, is_joypad := false):
-	player_name.text += OS.get_keycode_string(key) if !is_joypad else str(key)
-	self.name = player_name.text
-	key_input = key
-	var color = Color(
-		randf_range(0.0, 1.0),
-		randf_range(0.0, 1.0),
-		randf_range(0.0, 1.0),
-	   1.0
-	)
-	sprite_2d.material.set_shader_parameter("color_1_to_replace", color)
-	play_sound(HORSE_JOIN_SE)
-	set_multiplayer_authority(player_id)
-	print(player_name.text, " joined the race!")
-
-
 func _ready() -> void:
 	stop()
 	set_process_unhandled_input(false)
-	speed = speed * SignalBus.horses_speed
+	speed = speed * Globals.horses_speed
 	animation_timer.wait_time = anim_speed * 2
 	cooldown_timer.wait_time = cooldown
 	recovery_timer.wait_time = recovery_time
@@ -77,8 +66,7 @@ func _ready() -> void:
 	SignalBus.slow_down.connect(func(player, duration):
 		if player.name != self.name:
 			increment_speed(0.5, duration))
-	if is_multiplayer_authority():
-		set_random_direction()
+	set_random_direction()
 	start()
 
 
@@ -88,8 +76,6 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if !is_multiplayer_authority():
-		return
 	var collision = move_and_collide(direction * speed * delta)
 	if collision:
 		direction = direction.bounce(collision.get_normal())
@@ -113,7 +99,29 @@ func _unhandled_input(event: InputEvent) -> void:
 			set_direction_spinner_direction()
 			direction_spinner.disable()
 			start()
-			
+
+
+func setup(player_id: int, key, is_joypad := false):
+	var id := ""
+	if player_id != key:
+		id = str(player_id)
+	elif is_joypad:
+		id = str(key)
+	else:
+		id = OS.get_keycode_string(key)
+	set_multiplayer_authority(player_id)
+	player_name.text += id
+	self.name = player_name.text
+	key_input = key
+	if !Globals.online_game or is_multiplayer_authority():
+		color = Color(
+			randf_range(0.0, 1.0),
+			randf_range(0.0, 1.0),
+			randf_range(0.0, 1.0),
+			1.0
+		)
+	play_sound(HORSE_JOIN_SE)
+	print(player_name.text, " joined the race!")
 
 
 func start():
@@ -163,8 +171,8 @@ func hurt():
 	start()
 
 
-func flash(color: Color, intensity: float = 0.5, duration: float = 0.3):
-	sprite_2d.material.set_shader_parameter("glow_color", color)
+func flash(flash_color: Color, intensity: float = 0.5, duration: float = 0.3):
+	sprite_2d.material.set_shader_parameter("glow_color", flash_color)
 	sprite_2d.material.set_shader_parameter("glow_intensity", intensity)
 	await get_tree().create_timer(duration).timeout
 	sprite_2d.material.set_shader_parameter("glow_intensity", 0)

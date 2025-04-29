@@ -23,6 +23,8 @@ func pulse(node: CanvasItem, scale_amt: float = 0.05, alpha_amt: float = 0.3, du
 
 
 func stop(node: CanvasItem) -> void:
+	if node_tweens.size() == 0:
+		return
 	var properties = node_tweens[node]
 	for property in properties:
 		if property == "tween":
